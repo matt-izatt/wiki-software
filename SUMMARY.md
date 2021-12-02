@@ -2,11 +2,9 @@
 
 ## Fundamentals
 
-***
-
 * [Patterns](README.md)
-  * [Creational](patterns/creational-1/README.md)
-    * [Factory Method](patterns/creational-1/creational.md)
+  * [Creational](fundamentals/patterns/creational-1/README.md)
+    * [Factory Method](fundamentals/patterns/creational-1/creational.md)
 
 ## Tools
 

@@ -6,7 +6,7 @@ Factory Method is a creational design pattern that provides an interface for cre
 
 ## Diagram
 
-![](../../.gitbook/assets/factory-method.svg)
+![](../../../.gitbook/assets/factory-method.svg)
 
 ## Code
 

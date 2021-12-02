@@ -29,7 +29,7 @@ curl --data '{"name":"John","surname":"Doe"}' http://www.dataden.tech
 Set the verb sent in the request header
 
 ```bash
-curl--request "<VERB>" <URL>
+curl --request "<VERB>" <URL>
 ```
 
 _Example:_
