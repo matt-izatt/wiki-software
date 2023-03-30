@@ -1,8 +1,8 @@
-# Passport
+# Setup
 
 ## Config
 
-Passport uses what are termed _strategies_ to authenticate requests. Strategies range from verifying a username and password, delegated authentication using [OAuth](http://oauth.net) or federated authentication using [OpenID](http://openid.net).
+Passport uses what are termed _strategies_ to authenticate requests. Strategies range from verifying a username and password, delegated authentication using [OAuth](http://oauth.net/) or federated authentication using [OpenID](http://openid.net/).
 
 A strategy takes configuration options and a `verify` callback.
 
