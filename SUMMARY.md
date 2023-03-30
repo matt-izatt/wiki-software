@@ -1,12 +1,12 @@
 # Table of contents
 
 * [Software](README.md)
-* [Fundamentals](<README (1).md>)
+* [Fundamentals](<README (2).md>)
   * [Concepts](fundamentals/concepts.md)
   * [Diagrams](fundamentals/diagrams.md)
   * [Paradigms](fundamentals/paradigms.md)
   * [Principles](fundamentals/principles.md)
-  * [Patterns](<README (1) (1).md>)
+  * [Patterns](<README (1).md>)
     * [Factory Method](fundamentals/patterns/creational.md)
   * [Structures](fundamentals/structures.md)
   * [Algorithms](fundamentals/algorithms.md)
