@@ -2,7 +2,8 @@
 
 * [Software](README.md)
 * [Fundamentals](<README (2).md>)
-  * [Concepts](fundamentals/concepts.md)
+  * [Concepts](fundamentals/concepts/README.md)
+    * [Process Management](fundamentals/concepts/process-management.md)
   * [Diagrams](fundamentals/diagrams.md)
   * [Paradigms](fundamentals/paradigms.md)
   * [Principles](fundamentals/principles.md)
