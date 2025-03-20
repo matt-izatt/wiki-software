@@ -40,3 +40,4 @@
     * [Setup](tools/passport/passport.md)
   * [Unix](tools/unix/README.md)
     * [curl](tools/unix/curl.md)
+    * [chmod](tools/unix/chmod.md)
