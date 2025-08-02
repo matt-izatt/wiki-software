@@ -1,42 +1,85 @@
 # Process Management
 
-### What is a computer process?
+## **Computer Processes and Process Management**
 
-In computing, a process is an instance of a computer program that is being executed. It contains the program code and its current activity. A process is a fundamental concept in the operating system, which is responsible for managing and executing processes on a computer.
+### **Overview**
 
-***
+A **computer process** is an instance of a program in execution. It includes the program code, its current activity represented by the value of the program counter, the contents of the processor's registers, and variables. Processes are fundamental units of work in modern computing environments, particularly in multitasking operating systems, where multiple processes run concurrently.
 
-### What are the components of a process?
+### **Characteristics of a Process**
 
-**Stack:** Contains temporary data such as function parameters, return addresses, and local variables.
+Each process has the following attributes:
 
-**Heap** : This is dynamically allocated memory to a process during its run time.
+* **Process ID (PID):** A unique identifier for each process.
+* **State:** Processes can be in one of several states: new, ready, running, waiting, or terminated.
+* **Program Counter:** Points to the next instruction to be executed.
+* **CPU Registers:** Store the current working variables and temporary data.
+* **Memory Management Information:** Includes pointers to code, data, and stack segments.
+* **I/O Status Information:** Tracks I/O devices allocated and pending requests.
 
-**Text** : The executable instructions of a program
+### **Types of Processes**
 
-**Process Control Block :** A data structure used by the operating system to store all information about a process. This includes:
+* **User Processes:** Created by users or applications to perform specific tasks.
+* **System Processes (or Daemons):** Run in the background to handle system-level tasks.
+* **Foreground and Background Processes:** Foreground processes interact with users, while background processes do not require user interaction.
 
-* Process state (new, ready, running, waiting, terminated)
-* Process ID (unique identifier)
-* Program counter
-* CPU registers
-* Memory management information (pointers to the process’s address space)
-* I/O status information
-* Accounting information (e.g., CPU usage, time limits)
+### **Process Management**
 
-***
+**Process management** is the act of handling processes in an operating system. The operating system (OS) manages processes through the following mechanisms:
 
-### What are the states of a process?
+#### **Process Creation and Termination**
 
-**Start:** The initial state when a process is first started.
+Processes are created by:
 
-**Ready:** The process is waiting to be assigned to a processor. Ready processes are waiting to have the processor allocated to them by the operating system so that they can run. A process may come into this state after the **Start** state, or while running it by but getting interrupted by the scheduler to assign CPU to some other process.
+* **System calls** like `fork()` in Unix-like systems or `CreateProcess()` in Windows.
+* **Parent-child relationship:** A parent process can spawn one or more child processes.
 
-**Running:** Once the process has been assigned to a processor by the OS scheduler, the process state is set to running and the processor executes its instructions.
+Processes terminate upon:
 
-**Waiting:** the process moves into the waiting state if it needs to wait for a resource, such as waiting for user input, or waiting for a file to become available.
+* Completion of execution.
+* A signal or exception (e.g., segmentation fault).
+* An external request (e.g., `kill` command or task manager action).
 
-**Terminated or Exit:** Once the process finishes its execution, or it is terminated by the operating system, it is moved to the terminated state where it waits to be removed from main memory.
+#### **Process Scheduling**
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Source: How Operating Systems Work: 10 Concepts you Should Know as a Developer - James Le</p></figcaption></figure>
+The OS uses scheduling algorithms to determine which process runs at a given time. Key algorithms include:
 
+* **First-Come, First-Served (FCFS)**
+* **Shortest Job Next (SJN)**
+* **Round Robin (RR)**
+* **Multilevel Queue Scheduling**
+
+Schedulers aim to optimize CPU utilization, throughput, turnaround time, and fairness.
+
+#### **Context Switching**
+
+When switching from one process to another, the OS performs a **context switch**, saving the state of the current process and loading the state of the next one. This ensures continuity of execution.
+
+#### **Inter-Process Communication (IPC)**
+
+Processes often need to communicate with each other, especially in multitasking systems. IPC methods include:
+
+* **Pipes**
+* **Message Queues**
+* **Shared Memory**
+* **Sockets**
+
+#### **Process Synchronization**
+
+In multiprocessor or multi-threaded environments, synchronization mechanisms such as **semaphores**, **mutexes**, and **monitors** ensure that processes do not interfere with each other while sharing resources.
+
+### **Threads vs. Processes**
+
+A **thread** is a lightweight process that shares the same memory space with other threads in the same process. Threads are more efficient than full processes but require careful synchronization.
+
+### **Security and Isolation**
+
+Modern operating systems enforce **process isolation** to ensure that one process cannot interfere with the memory or resources of another. Techniques include:
+
+* **Virtual memory**
+* **Access control**
+* **Privilege levels**
+
+### **Conclusion**
+
+Processes and their management are vital to the functioning of operating systems. Effective process management allows systems to run multiple applications efficiently and securely, enabling complex multitasking and high-performance computing environments.
