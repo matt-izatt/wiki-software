@@ -1,6 +1,4 @@
-# Process Management
-
-## **Computer Processes and Process Management**
+# Processes
 
 ### **Overview**
 
