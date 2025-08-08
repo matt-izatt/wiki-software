@@ -14,6 +14,7 @@
     * [Distributed Shared Memory](fundamentals/concepts/distributed-shared-memory.md)
   * [Diagrams](fundamentals/diagrams/README.md)
     * [Sequence Diagram](fundamentals/diagrams/sequence-diagram.md)
+    * [Class Diagram](fundamentals/diagrams/class-diagram.md)
   * [Paradigms](fundamentals/paradigms.md)
   * [Principles](fundamentals/principles.md)
   * [Patterns](<README (1).md>)
