@@ -1,7 +1,6 @@
 # Table of contents
 
-* [Software](README.md)
-* [Fundamentals](<README (2).md>)
+* [Fundamentals](README.md)
   * [Concepts](fundamentals/concepts/README.md)
     * [Processes](fundamentals/concepts/processes.md)
     * [Threads and Concurrency](fundamentals/concepts/threads-and-concurrency.md)
