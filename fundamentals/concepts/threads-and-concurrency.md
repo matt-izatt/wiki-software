@@ -17,7 +17,7 @@ layout:
 
 # Threads and Concurrency
 
-## **Overview**
+### **Overview**
 
 A thread is the smallest unit of execution that can be scheduled by the operating system. While a process represents an independent program in execution, a process can contain multiple threads that share the same memory space and resources. Threads allow tasks to be performed concurrently, improving responsiveness and resource utilisation.
 
@@ -25,7 +25,7 @@ Concurrency refers to the ability of a system to deal with multiple tasks at onc
 
 ***
 
-## **Concurrency vs. Parallelism**
+### **Concurrency vs. Parallelism**
 
 * **Concurrency:** Multiple tasks are in progress within the same time frame, but not necessarily running at the same instant. Example: While one thread waits for network data, another processes user input.
 * **Parallelism:** Multiple tasks are executed literally at the same time on different CPU cores. Example: Two threads performing separate calculations on separate cores simultaneously.
@@ -35,15 +35,15 @@ Concurrency is like a chef cooking several dishes by switching between them quic
 
 ***
 
-## **Characteristics of a Thread**
+### **Characteristics of a Thread**
 
 Each thread, like a process, has a set of attributes that define its execution state and control its behaviour within a program:
 
-### **Thread ID (TID)**
+#### **Thread ID (TID)**
 
 Every thread in an operating system is assigned a unique identifier within its process, called the Thread ID (TID). The TID allows the OS and debuggers to track individual threads, manage their scheduling, and perform operations like suspension or termination.
 
-### **State**
+#### **State**
 
 A thread can be in various states depending on its execution progress:
 
@@ -55,31 +55,31 @@ A thread can be in various states depending on its execution progress:
 
 State transitions are managed by the OS’s thread scheduler, which ensures efficient sharing of CPU time among threads.
 
-### **Program Counter**
+#### **Program Counter**
 
 The program counter holds the address of the next instruction for the thread to execute. This ensures that if a thread is preempted or paused, it can resume exactly where it left off. Since threads within the same process share code, each thread’s program counter points to its own current execution position.
 
-### **Registers**
+#### **Registers**
 
 Each thread has its own set of CPU registers, storing variables, intermediate results, and control data during execution. The OS saves and restores these registers during a context switch between threads, ensuring accurate execution continuity.
 
-### **Stack**
+#### **Stack**
 
 Unlike processes, threads share code and data segments, but each thread has its own private stack. The stack stores function call information, local variables, and return addresses, keeping each thread’s execution context separate from others.
 
-### **Shared Memory and Resources**
+#### **Shared Memory and Resources**
 
 All threads in a process share the same code, global variables, and heap memory. This shared environment enables fast communication and data sharing but requires careful synchronisation to avoid race conditions and data corruption.
 
-### **Thread Control Block (TCB)**
+#### **Thread Control Block (TCB)**
 
 Similar to a process’s Process Control Block (PCB), the TCB holds all the metadata about a thread, including its TID, state, program counter, registers, scheduling priority, and stack pointer. The OS uses the TCB to manage thread execution.
 
 ***
 
-## **Types of Threads**
+### **Types of Threads**
 
-### **User-Level Threads (ULTs)**
+#### **User-Level Threads (ULTs)**
 
 User-level threads are managed entirely in user space by a thread library, without direct kernel involvement for scheduling.
 
@@ -90,7 +90,7 @@ User-level threads are managed entirely in user space by a thread library, witho
   * If one thread performs a blocking system call, the entire process may block.
   * Cannot take full advantage of multiple CPU cores without kernel support.
 
-### **Kernel-Level Threads (KLTs)**
+#### **Kernel-Level Threads (KLTs)**
 
 Kernel-level threads are managed directly by the operating system’s kernel. Each thread is known to the scheduler, which can assign them to different CPU cores.
 
@@ -100,7 +100,7 @@ Kernel-level threads are managed directly by the operating system’s kernel. Ea
 * **Disadvantages:**
   * Slower to create and manage compared to ULTs due to kernel overhead.
 
-### **Hybrid Thread Models**
+#### **Hybrid Thread Models**
 
 Some systems use a mix of user and kernel threads. In these models, user-level threads are mapped to a smaller or equal number of kernel threads (M:N mapping).
 
@@ -110,11 +110,11 @@ Some systems use a mix of user and kernel threads. In these models, user-level t
 
 ***
 
-## **Thread Management**
+### **Thread Management**
 
 Thread management refers to the mechanisms and operations the operating system uses to control thread creation, execution, coordination, and termination. It ensures that threads share CPU time fairly, access resources safely, and work together without interfering with each other’s execution.
 
-### **Thread Creation and Termination**
+#### **Thread Creation and Termination**
 
 * **Creation:** Threads can be created through language-specific libraries or APIs:
   * **POSIX threads (pthreads):** `pthread_create()` in C/C++.
@@ -124,7 +124,7 @@ Thread management refers to the mechanisms and operations the operating system u
   * Occurs naturally when the thread’s `run()` method or equivalent completes.
   * Can be triggered externally, though this is often discouraged due to resource safety concerns.
 
-### **Thread Synchronisation**
+#### **Thread Synchronisation**
 
 When multiple threads share resources, careful synchronisation is required to avoid inconsistencies. Without it, issues like race conditions and data corruption can occur.
 
@@ -142,7 +142,7 @@ Proper synchronisation ensures:
 * **Fairness:** No thread is indefinitely blocked from resources.
 * **Deadlock Prevention:** Avoids circular waiting situations that halt progress.
 
-### **Thread Scheduling**
+#### **Thread Scheduling**
 
 The operating system’s thread scheduler determines which thread runs at any given time. Efficient scheduling is key to maximising CPU usage and maintaining application responsiveness.
 
@@ -159,18 +159,18 @@ Schedulers aim to optimise:
 
 ***
 
-## **Common Concurrency Issues**
+### **Common Concurrency Issues**
 
 In a multithreaded or concurrent environment, improper coordination between threads can lead to serious problems that affect program correctness, performance, and stability. These issues often arise from poor synchronisation, incorrect resource management, or scheduling imbalances.
 
-### **Race Conditions**
+#### **Race Conditions**
 
 A race condition occurs when two or more threads access shared data without proper synchronisation, and the final outcome depends on the timing or sequence of thread execution. This can lead to inconsistent or corrupted data.
 
 * **Example:** Two threads incrementing the same shared counter simultaneously might overwrite each other’s updates, resulting in incorrect totals.
 * **Prevention:** Use mutual exclusion mechanisms such as mutexes, semaphores, or atomic operations to ensure that only one thread accesses the shared resource at a time.
 
-### **Deadlocks**
+#### **Deadlocks**
 
 A deadlock occurs when two or more threads are waiting indefinitely for resources held by each other, creating a circular waiting chain where no thread can proceed.
 
@@ -183,7 +183,7 @@ A deadlock occurs when two or more threads are waiting indefinitely for resource
   * Timeout mechanisms: Automatically release resources if a thread waits too long.
   * Deadlock detection: The system periodically checks for deadlocks and intervenes.
 
-### **Livelocks**
+#### **Livelocks**
 
 In a livelock, threads are not blocked, but they continually change state in response to each other and make no actual progress toward completing their tasks.
 
@@ -192,7 +192,7 @@ In a livelock, threads are not blocked, but they continually change state in res
   * Introduce randomness or back-off strategies so that one thread can eventually proceed.
   * Ensure algorithms guarantee progress under all conditions.
 
-### **Starvation**
+#### **Starvation**
 
 Starvation happens when a thread is perpetually denied access to the CPU or a needed resource because higher-priority threads monopolise it.
 
@@ -207,7 +207,7 @@ Starvation happens when a thread is perpetually denied access to the CPU or a ne
 
 Multithreading offers significant benefits in terms of responsiveness, performance, and efficient resource use. However, it also introduces challenges related to complexity, debugging, and potential concurrency bugs.
 
-### **Advantages**
+#### **Advantages**
 
 * **Improved Application Responsiveness**\
   Multithreading allows applications to remain responsive while performing background tasks. For example, a graphical user interface can continue to accept user input while a separate thread loads data or processes computations in the background.
@@ -220,7 +220,7 @@ Multithreading offers significant benefits in terms of responsiveness, performan
 * **Better Resource Utilisation**\
   Threads can be used to overlap computation with I/O operations. While one thread waits for disk or network data, another can use the CPU for processing tasks.
 
-### **Disadvantages**
+#### **Disadvantages**
 
 * **Increased Complexity in Program Design**\
   Writing correct multi-threaded code is significantly more challenging than writing single-threaded programs. Developers must carefully design synchronisation, communication, and task coordination.

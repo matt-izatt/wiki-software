@@ -17,21 +17,21 @@ layout:
 
 # Processes
 
-## **Overview**
+### **Overview**
 
 A computer process is an instance of a program in execution. It includes the program code, its current activity represented by the value of the program counter, the contents of the processor's registers, and variables. Processes are fundamental units of work in modern computing environments, particularly in multitasking operating systems, where multiple processes run concurrently.
 
 ***
 
-## **Characteristics of a Process**
+### **Characteristics of a Process**
 
 Each process has the following attributes:
 
-### **Process ID (PID)**
+#### **Process ID (PID)**
 
 Every process in an operating system is assigned a unique numerical identifier known as the _Process ID_ (PID). This value allows the system and users to track and manage processes individually. The PID is essential for operations like terminating a process, checking its status, or assigning resources. For example, using the `ps` command in Unix-like systems lists all running processes along with their PIDs, enabling precise control over process management.
 
-### **State**
+#### **State**
 
 A process can exist in different states depending on its execution stage:
 
@@ -42,15 +42,15 @@ A process can exist in different states depending on its execution stage:
 * **Terminated:** The process has finished execution and is being removed from the system’s process table.\
   The state transitions are managed by the operating system’s scheduler, which ensures fair resource allocation and efficient execution.
 
-### **Program Counter**
+#### **Program Counter**
 
 The program counter (PC) holds the memory address of the next instruction the process will execute. This ensures that even if the process is interrupted, such as by a context switch, it can resume from the exact point where it left off. The program counter is critical for maintaining process flow and enabling multitasking without losing execution progress.
 
-### **CPU Registers**
+#### **CPU Registers**
 
 CPU registers are small, high-speed storage locations within the processor that store variables, temporary data, and instruction-related values while the process runs. When a context switch occurs, the operating system saves the current process’s register values so they can be restored when the process resumes, ensuring no data or execution state is lost.
 
-### **Memory Management Information**
+#### **Memory Management Information**
 
 Each process has its own allocated memory space, which is divided into specific segments:
 
@@ -60,23 +60,23 @@ Each process has its own allocated memory space, which is divided into specific 
 
 The operating system maintains pointers and tables to keep track of these memory segments, ensuring that processes do not interfere with each other’s memory, which helps maintain stability and security.
 
-### **I/O Status Information**
+#### **I/O Status Information**
 
 Processes often require access to input/output devices such as keyboards, disk drives, printers, or network interfaces. The I/O status information includes details about which devices are allocated to the process and any pending I/O requests. This data allows the operating system to manage resource sharing, prevent conflicts, and handle asynchronous I/O efficiently.
 
 ***
 
-## **Types of Processes**
+### **Types of Processes**
 
-### **User Processes**
+#### **User Processes**
 
 User processes are created by individual users or applications to perform specific, often interactive, tasks. These processes typically start when a user launches a program, opens a file, or executes a command. Examples include text editors, web browsers, or data analysis programs. User processes operate within the permissions of the user who started them, which means they are limited in terms of system-level access for security reasons. These processes can run in the foreground (directly interacting with the user) or in the background, where they work silently until their output is needed.
 
-### **System Processes (or Daemons)**
+#### **System Processes (or Daemons)**
 
 System processes, often called _daemons_ in Unix-like systems, are background tasks that manage essential operating system functions. They usually start automatically when the system boots and run continuously without direct user interaction. Examples include `cron` (for scheduled tasks), `sshd` (for handling secure shell connections), and `systemd` (for managing services). System processes typically run with higher privileges than user processes, allowing them to perform critical functions like managing network connections, handling device input/output, or monitoring system performance.
 
-### **Foreground and Background Processes**
+#### **Foreground and Background Processes**
 
 Processes can also be categorised based on how they interact with the user.
 
@@ -87,11 +87,11 @@ Efficient multitasking in modern operating systems relies on the smooth coordina
 
 ***
 
-## **Process Management**
+### **Process Management**
 
 Process management is the act of handling processes in an operating system. The operating system (OS) manages processes through the following mechanisms:
 
-### **Process Creation and Termination**
+#### **Process Creation and Termination**
 
 Processes are created by:
 
@@ -104,7 +104,7 @@ Processes terminate upon:
 * A signal or exception (e.g., segmentation fault).
 * An external request (e.g., `kill` command or task manager action).
 
-### **Process Scheduling**
+#### **Process Scheduling**
 
 The OS uses scheduling algorithms to determine which process runs at a given time. Key algorithms include:
 
@@ -119,7 +119,7 @@ The OS uses scheduling algorithms to determine which process runs at a given tim
 
 Schedulers aim to optimise CPU utilisation, throughput, turnaround time, and fairness.
 
-### **Context Switching**
+#### **Context Switching**
 
 Context switching is the mechanism the operating system uses to switch the CPU’s focus from one process to another, enabling multitasking. When this happens, the OS must preserve the _execution state_ of the currently running process so it can resume later without losing progress.
 
@@ -144,7 +144,7 @@ During a context switch, the OS performs these steps:
 
 Although context switching is essential for responsiveness and fairness, it introduces _overhead_ because no useful work is done during the switch itself. Operating systems strive to minimise this overhead while ensuring smooth process transitions.
 
-### **Inter-Process Communication (IPC)**
+#### **Inter-Process Communication (IPC)**
 
 Processes often need to communicate with each other, especially in multitasking systems. IPC methods include:
 
@@ -157,7 +157,7 @@ Processes often need to communicate with each other, especially in multitasking 
 * **Sockets**\
   Endpoints for bidirectional communication between processes, either on the same machine or over a network. Commonly used for client-server applications.
 
-### **Process Synchronisation**
+#### **Process Synchronisation**
 
 Process synchronisation is the coordination of multiple processes or threads to ensure they work together without interfering with each other, especially when accessing shared resources such as memory, files, or hardware devices. Without proper synchronisation, problems like race conditions, data inconsistency, or deadlocks can occur.
 
@@ -182,11 +182,11 @@ Modern operating systems integrate these mechanisms deeply into their process ma
 
 ***
 
-## **Threads vs. Processes**
+### **Threads vs. Processes**
 
 Processes and threads are both units of execution in an operating system, but they differ significantly in how they use system resources, communicate, and handle concurrency. Understanding the distinction between the two is essential for designing efficient, scalable, and safe applications.
 
-### **Processes**
+#### **Processes**
 
 A process is an independent program in execution, with its own:
 
@@ -208,7 +208,7 @@ Because processes are isolated from one another, they provide strong security an
 * More CPU overhead for context switching between processes.
 * Slower data sharing compared to threads.
 
-### **Threads**
+#### **Threads**
 
 A thread is often called a _lightweight process_ because it represents an independent execution path within a process but shares many of its resources:
 
@@ -230,12 +230,12 @@ Because threads share the same memory space, switching between threads (within t
 * Requires careful synchronisation to avoid race conditions, deadlocks, and data corruption.
 * Debugging multi-threaded programs is more complex than single-threaded ones.
 
-### **Use Cases**
+#### **Use Cases**
 
 * **Processes:** Running separate applications, isolating critical services, implementing strong security boundaries.
 * **Threads:** Performing parallel tasks within an application, handling multiple connections in a server, keeping UI responsive while performing background work.
 
-### **Summary**
+#### **Summary**
 
 <table><thead><tr><th width="257.409423828125">Feature</th><th>Processes</th><th>Threads</th></tr></thead><tbody><tr><td>Memory Space</td><td>Separate</td><td>Shared</td></tr><tr><td>Communication</td><td>Via IPC</td><td>Direct (shared memory)</td></tr><tr><td>Overhead</td><td>Higher</td><td>Lower</td></tr><tr><td>Isolation</td><td>Strong</td><td>Weak</td></tr><tr><td>Fault Impact</td><td>Limited</td><td>Can crash entire process</td></tr><tr><td>Creation Speed</td><td>Slower</td><td>Faster</td></tr><tr><td>Context Switch Speed</td><td>Slower</td><td>Faster</td></tr></tbody></table>
 
@@ -243,7 +243,7 @@ In short: Processes are about isolation and safety; threads are about speed and 
 
 ***
 
-## **Security and Isolation**
+### **Security and Isolation**
 
 Modern operating systems enforce process isolation to ensure that one process cannot interfere with the memory or resources of another. Techniques include:
 

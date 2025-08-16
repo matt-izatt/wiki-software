@@ -17,13 +17,13 @@ layout:
 
 # CPU Scheduling
 
-## **Overview**
+### **Overview**
 
 CPU scheduling is the process by which an operating system decides which of the ready, in-memory processes will be assigned to the CPU for execution. Since modern operating systems support multiprogramming, where multiple processes may reside in memory at the same time, CPU scheduling plays a crucial role in ensuring efficient and fair use of the CPU.
 
 ***
 
-## **Need for CPU Scheduling**
+### **Need for CPU Scheduling**
 
 In a typical computing environment, processes continuously move between different states: running, waiting, and ready. While waiting, a process might be paused for I/O completion, user input, or the availability of a shared resource. The CPU,  being the system’s most critical and fastest component, can only execute one process per core at a time. On single-core systems, this means only one process runs at any given moment. Even on multi-core processors, the number of concurrent running processes is still limited to the number of available cores.
 
@@ -57,11 +57,11 @@ Fairness ensures that all processes get a reasonable share of CPU time and no pr
 
 ***
 
-## **Types of Schedulers**
+### **Types of Schedulers**
 
 Schedulers are components of the operating system that decide which processes run and when. They operate at different stages of process management, each with distinct responsibilities and timeframes. The three main types are:
 
-### **Long-Term Scheduler (Job Scheduler)**
+#### **Long-Term Scheduler (Job Scheduler)**
 
 The long-term scheduler controls the admission of jobs into the system for processing. It decides which processes from the job pool (often on disk) should be loaded into memory and placed into the ready queue.
 
@@ -72,7 +72,7 @@ The long-term scheduler controls the admission of jobs into the system for proce
   * Prevent system overload by controlling how many jobs enter the system.
 * **Example:** In a batch processing environment, the long-term scheduler might admit only as many jobs as the system can handle efficiently, deferring others until resources free up.
 
-### **Short-Term Scheduler (CPU Scheduler)**
+#### **Short-Term Scheduler (CPU Scheduler)**
 
 The short-term scheduler, or CPU scheduler, operates on the ready queue, selecting which ready process will execute next on the CPU.
 
@@ -84,7 +84,7 @@ The short-term scheduler, or CPU scheduler, operates on the ready queue, selecti
   * Implement fairness and priority-based execution.
 * **Example:** In a time-sharing system, the short-term scheduler might select the next process every few milliseconds, ensuring smooth multitasking.
 
-### **Medium-Term Scheduler**
+#### **Medium-Term Scheduler**
 
 The medium-term scheduler temporarily removes (swaps out) processes from memory to reduce the degree of multiprogramming or to free up resources for higher-priority tasks. It can later swap them back in for continued execution.
 
@@ -96,7 +96,7 @@ The medium-term scheduler temporarily removes (swaps out) processes from memory 
   * Rebalance workload when too many processes compete for resources.
 * **Example:** A background process might be swapped out to disk to give more memory and CPU time to an active, user-facing application.
 
-### **Relationship Between Schedulers:**
+#### **Relationship Between Schedulers:**
 
 * **Long-term scheduler** controls the entry of new processes.
 * **Medium-term scheduler** adjusts the mix of processes in memory.
@@ -105,46 +105,46 @@ The medium-term scheduler temporarily removes (swaps out) processes from memory 
 
 ***
 
-## **Scheduling Criteria**
+### **Scheduling Criteria**
 
 To evaluate and compare CPU scheduling algorithms, operating systems use a set of performance metrics. These criteria help determine how well a scheduling method balances system efficiency with user satisfaction. The most commonly used metrics are:
 
-### **CPU Utilisation**
+#### **CPU Utilisation**
 
 * **Definition:** The percentage of time the CPU is actively executing processes rather than sitting idle.
 * **Goal:** Keep the CPU as busy as possible to maximise productivity and avoid wasted resources.
 * **Ideal Range:** In practice, CPU utilisation typically ranges from 40% in lightly loaded systems to up to 90% in heavily loaded systems.
 * **Importance:** A higher utilisation means the CPU is being used efficiently, but pushing utilisation too high may increase waiting time for other processes.
 
-### **Throughput**
+#### **Throughput**
 
 * **Definition:** The number of processes completed in a given time unit (e.g., jobs per second).
 * **Goal:** Maximise the total work accomplished by the system.
 * **Importance:** Higher throughput means better overall performance, especially in batch processing systems where many jobs must be completed.
 * **Trade-offs:** Algorithms optimised for throughput may favour short jobs, potentially causing longer jobs to wait longer.
 
-### **Turnaround Time**
+#### **Turnaround Time**
 
 * **Definition:** The total time taken for a process from submission to completion. This includes waiting time in the ready queue, execution time, and any I/O delays.
 * **Formula:** Turnaround Time=Completion Time−Submission Time
 * **Goal:** Minimise turnaround time so that processes complete quickly.
 * **Importance:** Particularly relevant in batch systems, where users or administrators care about how long jobs take to finish.
 
-### **Waiting Time**
+#### **Waiting Time**
 
 * **Definition:** The total amount of time a process spends waiting in the ready queue for CPU allocation.
 * **Formula:** Waiting Time=Turnaround Time−Execution Time
 * **Goal:** Reduce waiting time to prevent processes from being stuck in the queue unnecessarily.
 * **Importance:** High waiting times lead to inefficiency and user frustration. Scheduling algorithms such as Shortest Job Next (SJN) are designed specifically to minimise average waiting time.
 
-### **Response Time**
+#### **Response Time**
 
 * **Definition:** The time from the submission of a process until the system produces its **first visible response**, not the time until completion.
 * **Goal:** Minimise response time to ensure interactive systems (like GUIs or real-time applications) feel responsive to the user.
 * **Importance:** Especially critical in time-sharing and interactive environments, where users expect immediate feedback.
 * **Note:** Response time differs from turnaround time—an application might take long to finish but should start responding quickly.
 
-### **Summary:**
+#### **Summary:**
 
 * For system administrators, metrics like CPU utilisation and throughput matter most.
 * For users, turnaround time, waiting time, and response time are more noticeable and directly affect their experience.
@@ -152,7 +152,7 @@ To evaluate and compare CPU scheduling algorithms, operating systems use a set o
 
 ***
 
-## **CPU Scheduling Algorithms**
+### **CPU Scheduling Algorithms**
 
 #### **1. First-Come, First-Served (FCFS)**
 
@@ -194,11 +194,11 @@ To evaluate and compare CPU scheduling algorithms, operating systems use a set o
 
 ***
 
-## **Preemptive vs. Non-Preemptive Scheduling**
+### **Preemptive vs. Non-Preemptive Scheduling**
 
 CPU scheduling algorithms can be broadly classified into **preemptive** and **non-preemptive** types, based on whether a running process can be interrupted and forced to yield the CPU. The choice between these two approaches affects system responsiveness, fairness, and overall performance.
 
-### **Preemptive Scheduling**
+#### **Preemptive Scheduling**
 
 In preemptive scheduling, the operating system can **interrupt a running process** and reassign the CPU to another process. This is typically done when:
 
@@ -224,7 +224,7 @@ In preemptive scheduling, the operating system can **interrupt a running process
 * More complex to implement and manage.
 * Can cause starvation of lower-priority processes if higher-priority ones keep arriving.
 
-### **Non-Preemptive Scheduling**
+#### **Non-Preemptive Scheduling**
 
 In non-preemptive scheduling, once a process gains control of the CPU, it **runs until completion** or until it voluntarily yields (e.g., when waiting for I/O). The operating system does not forcibly take the CPU away from it.
 
@@ -245,6 +245,8 @@ In non-preemptive scheduling, once a process gains control of the CPU, it **runs
 * Less fair, as processes cannot be interrupted even if a higher-priority task arrives.
 * Risk of convoy effect: a long process delays all others behind it in the queue.
 
+***
+
 ### **Comparison of Preemptive vs. Non-Preemptive Scheduling**
 
 | Feature            | Preemptive Scheduling                             | Non-Preemptive Scheduling                |
@@ -263,11 +265,11 @@ In short:
 
 ***
 
-## **Context Switching**
+### **Context Switching**
 
 A context switch is the process of storing the state of a currently running process or thread so that it can be resumed later, and then loading the saved state of another process or thread into the CPU for execution. It is the fundamental mechanism that allows multitasking, time-sharing, and concurrency in modern operating systems.
 
-### **Steps in a Context Switch**
+#### **Steps in a Context Switch**
 
 When the CPU scheduler decides to switch from one process to another, the operating system performs the following actions:
 
@@ -278,7 +280,7 @@ When the CPU scheduler decides to switch from one process to another, the operat
 
 This ensures that processes appear to run **concurrently**, even though only one is actually running on a single CPU core at a time.
 
-### **Causes of Context Switching**
+#### **Causes of Context Switching**
 
 Context switches occur in several scenarios, including:
 
@@ -287,7 +289,7 @@ Context switches occur in several scenarios, including:
 * **Interrupt handling:** The CPU is interrupted by hardware (e.g., keyboard, disk, or timer) and switches to the corresponding interrupt service routine.
 * **System calls:** A process requests a kernel service, requiring the CPU to switch to kernel mode execution.
 
-### **Overhead of Context Switching**
+#### **Overhead of Context Switching**
 
 Although context switching is essential for multitasking, it introduces **overhead**, since no useful work is done during the switch itself. This overhead includes:
 
@@ -297,7 +299,7 @@ Although context switching is essential for multitasking, it introduces **overhe
 
 Excessive switching—sometimes called _thrashing_—can significantly reduce CPU efficiency, as more time is spent switching between processes than executing them.
 
-### **Optimising Context Switching**
+#### **Optimising Context Switching**
 
 Operating systems aim to minimise unnecessary context switches by:
 
@@ -305,13 +307,13 @@ Operating systems aim to minimise unnecessary context switches by:
 * Grouping related tasks to reduce frequent switching.
 * Employing processor features such as hardware support for fast context saving/restoring.
 
-### **In summary:**
+#### **In summary:**
 
 Context switching is what makes modern multitasking possible. However, while it provides the illusion of parallelism, it comes with costs. Good scheduling strategies aim to minimise overhead while still ensuring fairness, responsiveness, and efficiency.
 
 ***
 
-## **Real-Time CPU Scheduling**
+### **Real-Time CPU Scheduling**
 
 In real-time systems, CPU scheduling is not just about fairness or efficiency—it is about meeting time constraints. Many applications, such as medical devices, industrial automation, flight control systems, and multimedia applications, require tasks to complete within strict deadlines. If deadlines are missed, the system may fail to perform its intended function.
 
