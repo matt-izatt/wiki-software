@@ -6,7 +6,7 @@ Factory Method is a creational design pattern that provides an interface for cre
 
 ## Diagram
 
-![A simple example of a factory method which created concrete instances of the table abstractions](../../.gitbook/assets/factory-method.svg)
+![A simple example of a factory method which created concrete instances of the table abstractions](../../../.gitbook/assets/factory-method.svg)
 
 ## Code
 
