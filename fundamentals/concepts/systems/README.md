@@ -2,10 +2,10 @@
 
 #### Processes & Threads
 
-* Process Lifecycle (creation, execution, termination)
-* Threads and Multithreading
+* Processes
 * Context Switching
-* Inter-Process Communication (IPC)
+* Threads and Concurrency
+* Inter-Process Communication
 * Daemons and Background Services
 
 #### Memory Management
@@ -15,6 +15,7 @@
 * Paging and Segmentation
 * Garbage Collection
 * Memory Leaks and Fragmentation
+* Distributed Shared Memory
 
 #### Concurrency & Synchronization
 
@@ -40,3 +41,4 @@
 * Block Devices vs Character Devices
 * File System Hierarchies
 * Disk Scheduling Algorithms
+* Distributed File Systems
