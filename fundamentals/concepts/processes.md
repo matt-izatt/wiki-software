@@ -13,6 +13,10 @@ layout:
     visible: true
   metadata:
     visible: false
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # Processes
@@ -182,7 +186,7 @@ Modern operating systems integrate these mechanisms deeply into their process ma
 
 ***
 
-### **Threads vs. Processes**
+### &#x20;**Processes vs Threads**
 
 Processes and threads are both units of execution in an operating system, but they differ significantly in how they use system resources, communicate, and handle concurrency. Understanding the distinction between the two is essential for designing efficient, scalable, and safe applications.
 
