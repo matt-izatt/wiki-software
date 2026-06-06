@@ -8,6 +8,8 @@ Modern operating systems allow multiple processes to run simultaneously. Memory 
 
 Without effective memory management, processes could overwrite each other's data, waste memory resources, or cause system instability.
 
+> Memory management answers _"Where does the process live?"_
+
 ***
 
 ### Goals of Memory Management

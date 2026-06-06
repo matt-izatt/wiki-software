@@ -7,6 +7,7 @@
     * [Inter-Process Communication](fundamentals/concepts/inter-process-communication.md)
     * [CPU Scheduling](fundamentals/concepts/cpu-scheduling.md)
     * [Memory Management](fundamentals/concepts/memory-management.md)
+    * [I/O Management](fundamentals/concepts/i-o-management.md)
   * [Diagrams](fundamentals/diagrams/README.md)
     * [Sequence Diagram](fundamentals/diagrams/sequence-diagram.md)
     * [Class Diagram](fundamentals/diagrams/class-diagram.md)

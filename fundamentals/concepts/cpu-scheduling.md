@@ -13,6 +13,10 @@ layout:
     visible: true
   metadata:
     visible: false
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # CPU Scheduling
@@ -20,6 +24,8 @@ layout:
 ### **Overview**
 
 CPU scheduling is the process by which an operating system decides which of the ready, in-memory processes will be assigned to the CPU for execution. Since modern operating systems support multiprogramming, where multiple processes may reside in memory at the same time, CPU scheduling plays a crucial role in ensuring efficient and fair use of the CPU.
+
+> CPU scheduling answers _"Who gets the CPU?"_
 
 ***
 
