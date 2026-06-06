@@ -10,6 +10,7 @@
     * [I/O Management](fundamentals/concepts/i-o-management.md)
     * [Virtualisation](fundamentals/concepts/virtualisation.md)
     * [Containerisation](fundamentals/concepts/containerisation.md)
+    * [Distributed File Systems](fundamentals/concepts/distributed-file-systems.md)
   * [Diagrams](fundamentals/diagrams/README.md)
     * [Sequence Diagram](fundamentals/diagrams/sequence-diagram.md)
     * [Class Diagram](fundamentals/diagrams/class-diagram.md)
