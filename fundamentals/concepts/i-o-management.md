@@ -26,23 +26,23 @@ Without I/O management, every application would need to understand the low-level
 
 The primary objectives of I/O management are:
 
-#### **Device Independence**
+#### Device Independence
 
 Applications should be able to interact with devices through standard interfaces without needing device-specific knowledge.
 
-#### **Efficiency**
+#### Efficiency
 
 I/O operations are often much slower than CPU and memory operations. The operating system should minimise waiting and maximise throughput.
 
-#### **Resource Sharing**
+#### Resource Sharing
 
 Multiple processes may need access to the same device. The operating system coordinates access safely and fairly.
 
-#### **Reliability**
+#### Reliability
 
 Errors such as device failures, network interruptions, or media corruption should be detected and handled appropriately.
 
-#### **Protection and Security**
+#### Protection and Security
 
 Processes should only be allowed to access devices they are authorised to use.
 
@@ -126,7 +126,7 @@ Benefits:
 
 ### Polling vs Interrupt-Driven I/O
 
-#### **Polling**
+#### Polling
 
 The CPU repeatedly checks device status.
 
@@ -140,7 +140,7 @@ Disadvantages:
 * Wastes CPU cycles
 * Poor scalability
 
-#### **Interrupt-Driven I/O**
+#### Interrupt-Driven I/O
 
 Devices notify the CPU when attention is required.
 
@@ -251,25 +251,25 @@ The operating system uses disk scheduling algorithms to determine the order of r
 
 Common algorithms include:
 
-#### **FCFS (First-Come, First-Served)**
+#### FCFS (First-Come, First-Served)
 
 Processes requests in arrival order.
 
 Simple but inefficient.
 
-#### **SSTF (Shortest Seek Time First)**
+#### SSTF (Shortest Seek Time First)
 
 Services the request closest to the current disk head position.
 
 Reduces seek time but may cause starvation.
 
-#### **SCAN (Elevator Algorithm)**
+#### SCAN (Elevator Algorithm)
 
 The disk head moves in one direction servicing requests before reversing direction.
 
 Provides good overall performance.
 
-#### **C-SCAN (Circular SCAN)**
+#### C-SCAN (Circular SCAN)
 
 The disk head services requests in one direction only, then returns to the start.
 
@@ -299,7 +299,7 @@ Goals include:
 
 ### Blocking vs Non-Blocking I/O
 
-#### **Blocking I/O**
+#### Blocking I/O
 
 The process waits until the I/O operation completes.
 
@@ -311,7 +311,7 @@ Disadvantages:
 
 * CPU time may be wasted waiting
 
-#### **Non-Blocking I/O**
+#### Non-Blocking I/O
 
 The process continues execution while the I/O operation progresses.
 
@@ -330,7 +330,7 @@ Modern servers frequently use non-blocking and asynchronous I/O.
 
 ### Synchronous vs Asynchronous I/O
 
-#### **Synchronous I/O**
+#### Synchronous I/O
 
 The requesting process waits for completion before continuing.
 
@@ -338,7 +338,7 @@ Example:
 
 A process requests a file read and waits for the data.
 
-#### **Asynchronous I/O**
+#### Asynchronous I/O
 
 The process initiates an operation and continues executing.
 

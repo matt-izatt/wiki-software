@@ -291,7 +291,7 @@ Modern virtualisation platforms rely heavily on these features.
 
 Although often compared, containers and virtual machines solve different problems.
 
-### **Virtual Machines**
+#### Virtual Machines
 
 * Include a complete guest operating system
 * Strong isolation
@@ -303,7 +303,7 @@ Examples:
 * Linux VM
 * Windows VM
 
-### **Containers**
+#### Containers
 
 * Share the host operating system kernel
 * Lightweight

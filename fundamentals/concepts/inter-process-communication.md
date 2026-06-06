@@ -13,11 +13,15 @@ layout:
     visible: true
   metadata:
     visible: false
+  tags:
+    visible: true
+  actions:
+    visible: true
 ---
 
 # Inter-Process Communication
 
-### **Overview**
+### Overview
 
 Inter-Process Communication (IPC) refers to mechanisms provided by the operating system that allow processes to exchange data and coordinate actions. Since processes in modern operating systems run in isolated memory spaces, IPC is essential for enabling cooperation and communication between them, especially in multitasking and distributed systems.
 
@@ -25,34 +29,34 @@ IPC is used in various contexts, including multitasking within a single system, 
 
 ***
 
-### **Why IPC is Needed**
+### Why IPC is Needed
 
 In a multitasking operating system, multiple processes often need to work together rather than operate in complete isolation. Since processes are generally given separate address spaces for security and stability, they cannot directly access each other’s memory. To cooperate effectively, the operating system provides IPC mechanisms. These allow processes to exchange data, coordinate actions, and maintain consistency.
 
 The main reasons why IPC is necessary include:
 
-#### **Data Sharing**
+#### Data Sharing
 
 Many applications need to exchange information between processes.
 
 * **Example:** A graphical user interface (GUI) process may display data that is continuously updated by a background process (e.g., a weather widget receiving live updates from a network service).
 * **IPC Role:** Provides structured and safe ways for processes to share data without violating isolation. Mechanisms like shared memory and message queues enable this.
 
-#### **Resource Sharing**
+#### Resource Sharing
 
 Processes frequently need to access common resources such as files, databases, printers, or blocks of memory. Without coordination, this can lead to conflicts or corruption.
 
 * **Example:** Two processes writing to the same file simultaneously could overwrite each other’s data.
 * **IPC Role:** IPC mechanisms, often combined with synchronisation tools like locks or semaphores, ensure orderly access to resources, preventing conflicts and maintaining data integrity.
 
-#### **Event Notification**
+#### Event Notification
 
 Processes may need to signal each other about changes in state or system events.
 
 * **Example:** A web server process may notify a logging process whenever a new client connection is established. Similarly, an operating system may inform a process that new input has arrived.
 * **IPC Role:** Techniques like signals, pipes, or sockets allow asynchronous notifications so processes can respond quickly to events.
 
-#### **Process Synchronisation**
+#### Process Synchronisation
 
 When processes cooperate on a shared task, their execution must be carefully synchronised to avoid race conditions, deadlocks, or inconsistent results.
 
@@ -64,11 +68,11 @@ IPC is needed because processes must not only execute independently but also sha
 
 ***
 
-### **Types of IPC Mechanisms**
+### Types of IPC Mechanisms
 
 IPC methods can be broadly categorised into message passing and shared memory:
 
-#### **Message Passing**
+#### Message Passing
 
 Processes communicate by sending and receiving messages via the operating system.
 
@@ -97,7 +101,7 @@ Processes communicate by sending and receiving messages via the operating system
 * Used to notify a process that a particular event has occurred.
 * Lightweight but limited in data transmission (usually only predefined signals).
 
-#### **Shared Memory**
+#### Shared Memory
 
 Multiple processes are given access to a common memory space.
 
@@ -107,11 +111,11 @@ Multiple processes are given access to a common memory space.
 
 ***
 
-### **IPC in Distributed Systems**
+### IPC in Distributed Systems
 
 Inter-Process Communication is not limited to processes running on the same physical machine. In distributed systems, processes may run on different computers connected through a network, yet they must still coordinate, share data, and exchange events. Unlike local IPC, which benefits from shared memory and fast kernel-level communication, distributed IPC faces additional challenges such as network delays, reliability issues, and differences in system architecture.
 
-#### **Challenges of IPC in Distributed Systems**
+#### Challenges of IPC in Distributed Systems
 
 1. **Network Latency and Reliability**
    * Communication between distributed processes depends on network conditions, which can introduce unpredictable delays.
@@ -125,7 +129,7 @@ Inter-Process Communication is not limited to processes running on the same phys
    * Examples: HTTP, TCP/IP, gRPC protocols, or custom application-level protocols.
    * Protocols ensure interoperability between heterogeneous systems running different hardware or operating systems.
 
-#### **Technologies for Distributed IPC**
+#### Technologies for Distributed IPC
 
 * **Remote Procedure Calls (RPC)**
   * Allows a process on one machine to call a function (procedure) in another machine as if it were local.
@@ -152,11 +156,11 @@ IPC in distributed systems extends beyond local communication, addressing networ
 
 ***
 
-### **Operating System Support**
+### Operating System Support
 
 Different operating systems provide their own APIs, primitives, and tools for implementing IPC. While the underlying goals are similar - data sharing, synchronisation, and event signalling - the mechanisms vary in design and implementation. Understanding OS-specific support is essential for writing portable or system-optimised applications.
 
-#### **Unix**
+#### Unix
 
 Unix-like systems (including Linux) provide a wide range of IPC mechanisms, many of which conform to POSIX or System V IPC standards.
 
@@ -179,7 +183,7 @@ Unix-like systems (including Linux) provide a wide range of IPC mechanisms, many
   * `ps`: Lists running processes and their relationships.
   * `netstat`: Inspects socket-based IPC and networking connections.
 
-#### **Mac**
+#### Mac
 
 macOS, built on the Darwin kernel (a hybrid of Mach and BSD), supports both BSD-style IPC mechanisms and Mach-specific IPC features.
 
@@ -194,7 +198,7 @@ macOS, built on the Darwin kernel (a hybrid of Mach and BSD), supports both BSD-
   * Applications can use either Mach IPC (low-level, powerful) or POSIX IPC (portable across Unix-like systems).
   * Apple’s frameworks (like XPC) abstract some of these mechanisms for application developers.
 
-#### **Windows**
+#### Windows
 
 Windows provides its own rich set of IPC mechanisms, many of which integrate deeply with its graphical and component-based architecture.
 
@@ -225,29 +229,29 @@ Together, these mechanisms highlight how operating systems balance efficiency, p
 
 ***
 
-### **Security Considerations**
+### Security Considerations
 
 While IPC enables processes to share data and coordinate their actions, it also introduces security risks. If not properly controlled, IPC channels can become avenues for unauthorised access, privilege escalation, or data leakage. To maintain system security and stability, operating systems and applications must enforce strict protections around IPC mechanisms.
 
-#### **1. Protecting IPC Channels**
+#### 1. Protecting IPC Channels
 
 * **Access Control:** IPC mechanisms (such as shared memory, pipes, or message queues) must enforce ownership and permission checks to prevent one process from reading or writing to another process’s communication channel without authorisation.
 * **Example:** On Unix/Linux systems, shared memory segments and message queues are assigned user/group permissions, similar to files, ensuring that only authorised processes can access them.
 * **Risk if unchecked:** Malicious processes could inject or intercept messages, modify shared memory, or flood IPC channels to cause denial of service.
 
-#### **2. Permission Checks and Authentication**
+#### 2. Permission Checks and Authentication
 
 * **Local IPC:** Operating systems apply permission models similar to file system permissions. Processes must have the correct privileges to create, read, or write IPC resources.
 * **Remote IPC:** Since processes may communicate over networks, authentication is critical to ensure that only trusted processes or machines can establish communication.
 * **Example:** Windows named pipes and COM objects support Access Control Lists (ACLs) to define which users or processes are allowed to use them.
 
-#### **3. Encryption and Data Integrity**
+#### 3. Encryption and Data Integrity
 
 * **Remote IPC** (such as sockets, RPC, or message brokers) is vulnerable to **eavesdropping** and **tampering** if messages are sent in plaintext.
 * **Encryption:** Transport-layer security (TLS/SSL) or application-layer encryption should be used to protect confidentiality and integrity of data in transit.
 * **Checksums/Hashes:** Adding integrity checks prevents undetected message corruption or modification during transmission.
 
-#### **4. Sandboxing and IPC Restrictions**
+#### 4. Sandboxing and IPC Restrictions
 
 * **Sandboxed Environments:** Many modern operating systems and platforms (e.g., iOS, Android, and web browsers) place applications in sandboxes with **restricted IPC capabilities** to limit the risk of data leakage.
 * **Example:**
@@ -255,7 +259,7 @@ While IPC enables processes to share data and coordinate their actions, it also 
   * Browsers isolate tabs and extensions into separate processes, allowing only limited and audited IPC channels.
 * **Goal:** Prevent one compromised process from spying on or manipulating another.
 
-#### **5. Mitigating Common IPC Security Risks**
+#### 5. Mitigating Common IPC Security Risks
 
 * **Race Conditions:** Ensure proper synchronisation so attackers cannot exploit timing gaps to gain access.
 * **Privilege Escalation:** Never allow untrusted processes to send privileged commands through IPC without validation.
@@ -266,7 +270,7 @@ IPC security is about more than just functionality—it’s about ensuring that 
 
 ***
 
-### **Examples of IPC Usage**
+### Examples of IPC Usage
 
 IPC is used in nearly all modern applications to enable processes to cooperate and share information. Some common real-world examples include:
 
